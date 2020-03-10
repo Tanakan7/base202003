@@ -9,7 +9,7 @@ module.exports = {
     stage: 'test-',
     prod: ''
   },
-  buildDir: 'build/campaign',
+  buildDir: 'dist',
   assetsDir: '',
   projectPath: '',
 }

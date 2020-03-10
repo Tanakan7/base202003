@@ -23,11 +23,11 @@ const extend = (env, argv) => ({
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: './src/pages/index.ejs',
+            template: './src/index.html',
         }),
         new CopyWebpackPlugin([
             {
-                from: path.resolve(__dirname, '../src/common/img'),
+                from: path.resolve(__dirname, '../src/img'),
                 to: 'img',
             },
         ]),
