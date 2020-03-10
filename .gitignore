@@ -1,0 +1,12 @@
+node_modules/
+*.log
+dist/
+.DS_store
+tmp/
+# Editor directories and files
+.idea
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
