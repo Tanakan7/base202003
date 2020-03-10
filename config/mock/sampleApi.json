@@ -1,0 +1,14 @@
+{
+  "data": {
+    "status": 200,
+    "hogehoge": {
+      "member_id": "xxxxx",
+      "message": {
+        "407": "キャンペーン期間外です"
+      },
+      "is_hoge": 1,
+      "rsv_result_count": 2,
+      "is_fuga": 1
+    }
+  }
+}

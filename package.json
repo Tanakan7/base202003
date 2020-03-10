@@ -5,6 +5,18 @@
   "repository": "https://github.com/Tanakan7/base202003.git",
   "author": "kanji",
   "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server --config config/conf.dev.js --mode development",
+    "view": "http-server -p 3100 -o",
+    "build": "rimraf dist && webpack --config config/conf.prod.js --mode production",
+    "build:stage": "npm run build -- --deploy stage",
+    "build:prod": "npm run build -- --deploy prod",
+    "format:js": "prettier-eslint 'src/**/*.js' --write 'src/**/*.js' --parser babel"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
   "devDependencies": {
     "@babel/core": "^7.8.7",
     "@babel/polyfill": "^7.8.7",
