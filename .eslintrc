@@ -1,0 +1,7 @@
+{
+  "extends": ["gnavi", "gnavi-react", "plugin:prettier/recommended"],
+  "rules": {
+    "react/destructuring-assignment": "off", // 引数の分割できなくなるので off
+    "react/display-name": "off" // React.memo()を使うときdisplay-nameを設定しなければならないので off
+  }
+}
