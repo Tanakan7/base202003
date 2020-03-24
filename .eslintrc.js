@@ -1,13 +1,13 @@
 module.exports = {
   root: true,
-  parserOptions: {
-    parser: 'babel-eslint',
-    sourceType: 'module'
-  },
-  env: {
-    'browser': true,
-    'es6': true
-  },
+  // parserOptions: {
+  //   parser: 'babel-eslint',
+  //   sourceType: 'module'
+  // },
+  // env: {
+  //   'browser': true,
+  //   'es6': true
+  // },
   extends: [
     'eslint-config-gnavi',
     'eslint-config-gnavi-react',
@@ -16,10 +16,18 @@ module.exports = {
   plugins: [
     'no-unsafe-regex',
   ],
+  // settings: {
+  //   'import/extensions': ['.js', '.jsx']
+  // },
   rules: {
     'space-before-function-paren': 'off',
     'arrow-parens': ['error', 'as-needed'],
-    'import/extensions': 'always',
+    'import/extensions': 0,
+    // 'import/extensions': ['error', 'ignorePackages', {
+    //   'js': 'always',
+    //   'jsx': 'always',
+    // }],
+    'import/no-unresolved': 0,
     'indent': 'off',
     'no-console': 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
