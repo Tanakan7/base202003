@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { Sample } from './components/Sample'
 // import logo from './logo.svg';
 // import './App.css';
 // <header className="App-header">
@@ -16,12 +17,14 @@ import React from 'react';
 //   </a>
 // </header>
 
-const  App = () => {
+const App = () => {
+  console.log('aa2a')
   return (
     <div className="App">
+      <Sample />
       <p>Hello!</p>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

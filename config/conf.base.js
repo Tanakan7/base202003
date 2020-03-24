@@ -26,27 +26,27 @@ const pathConf = require('./conf.path')
 //   return use
 // }
 
-const getAssetPath = (mode) =>{
+const getAssetPath = mode => {
   return `${pathConf.host[mode]}${pathConf.projectPath}`
 }
 
 module.exports = (env, argv) => ({
   entry: {
-    app:['@babel/polyfill',path.resolve(__dirname,'../src/index.jsx')],
+    app: ['@babel/polyfill', path.resolve(__dirname, '../src/index.jsx')],
   },
   output: {
-    path: path.resolve(__dirname,`./${pathConf.buildDir}`),
+    path: path.resolve(__dirname, `./${pathConf.buildDir}`),
     // filename: `${pathConf.assetsDir}js/[name].js?v=[hash]`,
     filename: '[name].js',
-    publicPath: (argv.deploy) ? `${getAssetPath(argv.deploy)}` : ''
+    publicPath: argv.deploy ? `${getAssetPath(argv.deploy)}` : '',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
       // '@common': path.resolve(__dirname,'../src/common'),
       // '@pages': path.resolve(__dirname,'../src/pages'),
-      '@components': path.resolve(__dirname,'../src/components'),
-    }
+      '@components': path.resolve(__dirname, '../src/components'),
+    },
   },
   module: {
     rules: [
@@ -73,21 +73,31 @@ module.exports = (env, argv) => ({
       //   ]
       // },
       {
+        test: /\.css/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: { url: false },
+          },
+        ],
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         enforce: 'pre',
         use: [
           {
-            loader:'babel-loader',
+            loader: 'babel-loader',
           },
           {
             loader: 'eslint-loader',
             options: {
               formatter: require('eslint-friendly-formatter'),
-              emitWarning: true
-            }
+              emitWarning: true,
+            },
           },
-        ]
+        ],
       },
       // {
       //   test : /\.ejs$/,
@@ -118,7 +128,7 @@ module.exports = (env, argv) => ({
       //     }
       //   ]
       // },
-    ]
+    ],
   },
   // plugins: [
   //   //以下追記
