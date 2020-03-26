@@ -22,7 +22,7 @@ const App = () => {
   return (
     <div className="App">
       <Sample />
-      <p>Hello!</p>
+      <p>フッター</p>
     </div>
   )
 }

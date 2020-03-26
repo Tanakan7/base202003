@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { NewsList } from './NewsList'
 
 const Header = styled('div')`
   background-color: darkseagreen;
@@ -24,6 +25,7 @@ export const Sample = () => {
         <HeaderText>ヘッダー</HeaderText>
       </Header>
       <div>sampleだよ</div>
+      <NewsList />
     </>
   )
 }
