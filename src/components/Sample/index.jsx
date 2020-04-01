@@ -25,7 +25,6 @@ export const Sample = () => {
       <Header>
         <HeaderText>ヘッダー</HeaderText>
       </Header>
-      <div>sampleだよ</div>
       <MapSample />
       {/* <NewsList /> */}
     </>
