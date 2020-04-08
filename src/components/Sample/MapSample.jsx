@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { markers as data } from './markers'
 
 const markerClick = (e, map) => {
   console.log(e, map)
@@ -7,8 +6,6 @@ const markerClick = (e, map) => {
 
 export const MapSample = () => {
   const [map, setMap] = useState(null)
-  const [markers, setMarkers] = useState([])
-
   useEffect(() => {
     console.log('useEffect Map')
     setMap(
@@ -27,56 +24,24 @@ export const MapSample = () => {
 
   useEffect(() => {
     console.log('useEffect marker')
-    if (!map) {
-      return () => {}
-    }
-    // const marker = new window.google.maps.Marker({
-    //   // 35.6761 139.768382
-    //   position: { lat: 35.677699, lng: 139.761735 },
-    //   map,
-    //   title: 'Hello Istanbul!',
-    // })
-
-    const arr = []
-
-    data.forEach(item => {
-      console.log(item)
-      const val = new window.google.maps.Marker({
-        position: { lat: item.lat, lng: item.lng },
+    if (map) {
+      const marker = new window.google.maps.Marker({
+        // 35.6761 139.768382
+        position: { lat: 35.677699, lng: 139.761735 },
         map,
-        title: item.txt,
+        title: 'Hello Istanbul!',
       })
-      arr.push(val)
-    })
-    console.log(arr)
-    setMarkers(arr)
 
-    const handleDragEnd = () => {
-      console.log('移動した', map.center.lat(), map.center.lng())
-    }
-    map.addListener('dragend', handleDragEnd)
-
-    return () => {
-      if (markers) {
-        markers.forEach(item => {
-          console.log(item)
-        })
+      const handleDragEnd = () => {
+        console.log('移動した', map.center.lat(), map.center.lng())
       }
+      map.addListener('dragend', handleDragEnd)
+
+      marker.addListener('click', e => {
+        markerClick(e, map)
+      })
     }
   }, [map])
-
-  useEffect(() => {
-    if (markers) {
-      markers.forEach((item, idx) => {
-        console.log(item)
-        item.addListener('click', () => {
-          console.log(idx)
-          item.setMap(null)
-        })
-      })
-    }
-  }, [markers])
-
-  console.log('再評価 (MapSample.jsx)')
+  console.log('再評価(MapSample.jsx')
   return <div style={{ width: '100%', height: 640 }} id="map" />
 }
