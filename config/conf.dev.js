@@ -17,7 +17,7 @@ const extend = (env, argv) => ({
   plugins: [
     new webpack.DefinePlugin({
       MODE: JSON.stringify(argv.mode),
-      // 'APIMOCK_LOTTERY': JSON.stringify(require('./mock/sampleApi.json')),
+      // 'SOME_API_MOCK_DATA': JSON.stringify(require('./mock/sampleApi.json')),
       HOST_PREFIX: JSON.stringify(pathConf.api.local),
     }),
     new webpack.HotModuleReplacementPlugin(),

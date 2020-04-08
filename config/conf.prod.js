@@ -1,11 +1,12 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CssRewritePlugin = require('css-rewrite-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 const pathConf = require('./conf.path')
 const confBase = require('./conf.base')
 
@@ -13,7 +14,7 @@ const extend = (env, argv) => ({
   plugins: [
     new webpack.DefinePlugin({
       MODE: JSON.stringify(argv.mode),
-      APIMOCK_LOTTERY: {},
+      SOME_API_MOCK_DATA: {},
       HOST_PREFIX: JSON.stringify(pathConf.api[String(argv.deploy || 'local')]),
     }),
     new HtmlWebpackPlugin({
