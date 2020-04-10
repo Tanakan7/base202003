@@ -1,30 +1,10 @@
 const path = require('path')
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const AutoPreFixer = require('autoprefixer')
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const util = require('./util')
 const pathConf = require('./conf.path')
-
-// const getCssLoader = (mode) => {
-//   const use = ['style-loader']
-//   if(mode === 'production'){
-//     use.push({
-//       loader: MiniCssExtractPlugin.loader
-//     })
-//   }
-//   use.push({
-//     loader: 'css-loader',
-//     options: {
-//       url: false,
-//       modules: true,
-//       localIdentName:'[folder]__[local]',
-//     }
-//   },
-//   {
-//     loader: 'postcss-loader',
-//   })
-//   return use
-// }
 
 const getAssetPath = mode => {
   return `${pathConf.host[mode]}${pathConf.projectPath}`
@@ -35,11 +15,12 @@ module.exports = (env, argv) => ({
     app: ['@babel/polyfill', path.resolve(__dirname, '../src/index.jsx')],
   },
   output: {
-    path: path.resolve(__dirname, `./${pathConf.buildDir}`),
+    path: path.resolve(__dirname, `./../${pathConf.buildDir}`),
     // filename: `${pathConf.assetsDir}js/[name].js?v=[hash]`,
     filename: '[name].js',
     publicPath: argv.deploy ? `${getAssetPath(argv.deploy)}` : '',
   },
+  devtool: argv.mode === 'development' ? 'source-map' : 'none',
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
@@ -73,12 +54,29 @@ module.exports = (env, argv) => ({
       //   ]
       // },
       {
-        test: /\.css/,
+        test: /index\.(sa|sc|c)ss$/,
         use: [
-          'style-loader',
+          // 開発時とビルド時でここだけ使い分け
+          argv.mode === 'development'
+            ? 'style-loader'
+            : {
+                loader: MiniCssExtractPlugin.loader,
+              },
           {
             loader: 'css-loader',
-            options: { url: false },
+            options: {
+              importLoaders: 2,
+              // url: false,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [AutoPreFixer()],
+            },
+          },
+          {
+            loader: 'sass-loader',
           },
         ],
       },
@@ -130,11 +128,15 @@ module.exports = (env, argv) => ({
       // },
     ],
   },
-  // plugins: [
-  //   //以下追記
-  //   new HtmlWebpackPlugin({
-  //     template: path.resolve(__dirname, '../src/index.html'),
-  //     filename: 'index.html'
-  //   })
-  // ]
+  plugins: [
+    //   //以下追記
+    //   new HtmlWebpackPlugin({
+    //     template: path.resolve(__dirname, '../src/index.html'),
+    //     filename: 'index.html',
+    //   }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      path: path.resolve(__dirname, `./../${pathConf.buildDir}`),
+    }),
+  ],
 })
