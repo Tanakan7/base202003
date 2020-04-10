@@ -16,8 +16,7 @@ module.exports = (env, argv) => ({
   },
   output: {
     path: path.resolve(__dirname, `./../${pathConf.buildDir}`),
-    // filename: `${pathConf.assetsDir}js/[name].js?v=[hash]`,
-    filename: '[name].js',
+    filename: `${pathConf.assetsDir}js/[name].js?v=[hash]`,
     publicPath: argv.deploy ? `${getAssetPath(argv.deploy)}` : '',
   },
   devtool: argv.mode === 'development' ? 'source-map' : 'none',
