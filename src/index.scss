@@ -1,1 +1,6 @@
-@import './css/_reset.css';
+@import 'css/reset';
+@import "css/fuga"; // TODO: delete me
+
+.hoge { // TODO: delete me
+  display: block;
+}

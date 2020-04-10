@@ -7,11 +7,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --config config/conf.dev.js --mode development",
-    "view": "http-server -p 3100 -o",
     "build": "rimraf dist && webpack --config config/conf.prod.js --mode production",
     "build:stage": "npm run build -- --deploy stage",
     "build:prod": "npm run build -- --deploy prod",
-    "format:js": "prettier-eslint 'src/**/*.js' --write 'src/**/*.js' --parser babel"
+    "format:js": "prettier-eslint 'src/**/*.js' --write 'src/**/*.js' --parser babel",
+    "view": "http-server ./dist -p 3100 -o"
   },
   "browserslist": [
     "> 1%",
@@ -23,6 +23,7 @@
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
     "@babel/preset-stage-2": "^7.8.3",
+    "autoprefixer": "^9.7.6",
     "babel-loader": "^8.0.6",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.2",
@@ -40,10 +41,15 @@
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.12.1",
     "husky": "^4.2.3",
+    "mini-css-extract-plugin": "^0.9.0",
     "node-watch": "^0.6.3",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
     "prettier": "^1.19.1",
     "prettier-eslint-cli": "^5.0.0",
     "rimraf": "^3.0.2",
+    "sass": "^1.26.3",
+    "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
     "url-loader": "^3.0.0",
     "webpack": "^4.42.0",
