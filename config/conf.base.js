@@ -1,8 +1,6 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const AutoPreFixer = require('autoprefixer')
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const pathConf = require('./conf.path')
 
 const getAssetPath = mode => {
@@ -92,11 +90,5 @@ module.exports = (env, argv) => ({
       },
     ],
   },
-  plugins: [
-    //   //以下追記
-    //   new HtmlWebpackPlugin({
-    //     template: path.resolve(__dirname, '../src/index.html'),
-    //     filename: 'index.html',
-    //   }),
-  ],
+  // plugins: [], の共通設定が必要なときはここに記述
 })

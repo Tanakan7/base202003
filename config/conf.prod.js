@@ -3,7 +3,6 @@ const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-// const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const pathConf = require('./conf.path')
 const confBase = require('./conf.base')
@@ -36,11 +35,6 @@ const extend = (env, argv) => {
           removeScriptTypeAttributes: true,
         },
       }),
-      // new OptimizeCssAssetsPlugin({
-      //   assetNameRegExp: /\.css\?v=.*/g,
-      // }),
-
-      // new MiniCssExtractPlugin({ filename: '[name].css' }),
       new MiniCssExtractPlugin({
         filename: `${pathConf.assetsDir}css/[name].css?v=[hash]`,
       }),
