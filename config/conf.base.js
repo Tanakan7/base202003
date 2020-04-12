@@ -98,10 +98,5 @@ module.exports = (env, argv) => ({
     //     template: path.resolve(__dirname, '../src/index.html'),
     //     filename: 'index.html',
     //   }),
-    // TODO: devに移動かも
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      path: path.resolve(__dirname, `./../${pathConf.buildDir}`),
-    }),
   ],
 })

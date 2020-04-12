@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const pathConf = require('./conf.path')
 const confBase = require('./conf.base')
 
@@ -39,6 +40,10 @@ const extend = (env, argv) => ({
         to: 'img',
       },
     ]),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      path: path.resolve(__dirname, `./../${pathConf.buildDir}`),
+    }),
   ],
 })
 
