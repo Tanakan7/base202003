@@ -12,6 +12,11 @@ const Header = styled('div')`
   padding-left: 16px;
 `
 
+const HeaderImg = styled('img')`
+  height: 24px;
+  width: 24px;
+`
+
 const HeaderText = styled('p')`
   color: #fff;
 `
@@ -23,7 +28,10 @@ export const Sample = () => {
   return (
     <>
       <Header>
+        <HeaderImg src={`${STATIC_PATH}img/fork.svg`} />
         <HeaderText>ヘッダー</HeaderText>
+        <HeaderImg src={`${STATIC_PATH}img/fork.png`} alt="fork png" />
+        <HeaderImg src={`${STATIC_PATH}img/subDirSample/subsub/images.png`} alt="fork png" />
       </Header>
       <MapSample />
       {/* <NewsList /> */}

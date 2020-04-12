@@ -1,3 +1,14 @@
+$revision: "20200401";
+
 .fuga {
   color: dodgerblue;
+
+  &__image {
+    height: 300px;
+    object-fit: cover;
+    // 相対パスにしたいときはcss-loaderのurlをfalseにする
+    background-image: url("/img/0301.png?" + #{$revision});
+    background-color: antiquewhite;
+    background-repeat: no-repeat;
+  }
 }
