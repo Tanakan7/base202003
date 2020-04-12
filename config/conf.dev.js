@@ -20,7 +20,7 @@ const extend = (env, argv) => ({
     open: false,
     inline: true,
     hot: true,
-    // quiet: true,
+    quiet: false, // true: devServer起動時のconsole出力しない
   },
   plugins: [
     new webpack.DefinePlugin({
