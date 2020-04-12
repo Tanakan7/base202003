@@ -32,7 +32,7 @@ module.exports = (env, argv) => ({
             loader: 'file-loader',
             options: {
               regExp: /\/([a-zA-Z0-9_-]+)\/[a-zA-Z0-9_-]+\.(jpg|png|gif|svg)$/,
-              name: '[1]/[name].[ext]',
+              name: '[1]/[name].[ext]?v=[hash]',
               outputPath: `./${pathConf.assetsDir}img/`,
               publicPath: path => {
                 const excludeCommonImgPath = path.replace('img/', '')

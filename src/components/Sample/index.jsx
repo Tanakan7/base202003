@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 // import { NewsList } from './NewsList'
 import { MapSample } from './MapSample'
+import forkPng from '../../img/fork.png'
+import forkSvg from '../../img/fork.svg'
+import forkSubDirSvg from '../../img/subDirSample/subsub/images.png'
 
 const Header = styled('div')`
   background-color: darkseagreen;
@@ -28,10 +31,10 @@ export const Sample = () => {
   return (
     <>
       <Header>
-        <HeaderImg src={`${STATIC_PATH}img/fork.svg`} />
+        <HeaderImg src={forkSubDirSvg} alt="forkSVG" />
         <HeaderText>ヘッダー</HeaderText>
-        <HeaderImg src={`${STATIC_PATH}img/fork.png`} alt="fork png" />
-        <HeaderImg src={`${STATIC_PATH}img/subDirSample/subsub/images.png`} alt="fork png" />
+        <HeaderImg src={forkPng} alt="forkPNG" />
+        <HeaderImg src={forkSvg} alt="forkSVG" />
       </Header>
       <MapSample />
       {/* <NewsList /> */}
