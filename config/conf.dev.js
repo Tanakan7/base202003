@@ -17,7 +17,7 @@ const extend = (env, argv) => ({
     clientLogLevel: 'warning',
     contentBase: false,
     port: 3002,
-    open: true,
+    open: false,
     inline: true,
     hot: true,
     // quiet: true,

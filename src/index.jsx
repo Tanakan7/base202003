@@ -3,6 +3,13 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import './index.scss'
 
+// HMR
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    ReactDOM.render(<App />, document.getElementById('root'))
+  })
+}
+
 window.addEventListener('load', () => {
   ReactDOM.render(<App />, document.getElementById('root'))
 })
