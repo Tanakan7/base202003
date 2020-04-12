@@ -39,23 +39,42 @@ yarn build:stage
 yarn build:prod
 ```
 
+## Tree
+
+```
+├── README.md
+├── config            // webpack設定
+│   ├── conf.base.js  // 基本設定
+│   ├── conf.dev.js   // ローカル開発時の設定
+│   ├── conf.prod.js  // ビルド時の設定
+│   ├── conf.path.js  // ビルドコマンド別のパス設定
+│   └── mock // 移動or削除予定
+│       └── sampleApi.json
+├── dist  // 納品ファイル群
+├── package.json
+└── src
+    ├── components
+    │   ├── コンポーネントA
+    │   └── コンポーネントB
+    ├── utils
+    ├── common
+    ├── css
+    ├── img
+    ├── index.html
+    ├── index.jsx
+    ├── App.jsx
+    └── index.scss
+```
+
+## 実装方針
+
+- React + StyledComponentでのコンポーネント単位で実装
+  - JSX記述があれば`.jsx`。その他は`.js`
+- Sassは極力使わない
+
 
 ## TODO
 
-- [x] 画像コピー
-    - [x] html, css, js上から操作
-    - [x] staticファイルへのハッシュ付与
-        - [x] css
-            - どうせあまり変更しない想定のため、ハッシュ用変数手動で変更
-        - [x] js
-        - [x] html
-            - あまり追加しない想定のため手動で付与
-    - [x] 画像のパス管理
-        - [x] js
-        - [x] css
-        - htmlは手動で
-
-- [x] eslintのdefinePluginの変数宣言なしエラーを無視させる
 - [ ] readme記載
 - [ ] jsonサーバー（実装のときでOK
 
