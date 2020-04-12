@@ -2,12 +2,17 @@ module.exports = {
   host: {
     local: './',
     stage: './',
-    prod: 'https://c-r.gnst.jp/plan/campaign/',
+    prod: 'https://example.com/hoge/fuga/',
+  },
+  staticFiles: {
+    local: './',
+    stage: './',
+    prod: './',
   },
   api: {
     local: 'test-',
     stage: 'test-',
-    prod: ''
+    prod: '',
   },
   buildDir: 'dist',
   assetsDir: '',

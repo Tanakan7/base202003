@@ -5,6 +5,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const pathConf = require('./conf.path')
 const confBase = require('./conf.base')
 
+/**
+ * @param {object} env
+ * @param {Object} argv
+ *   mode  : 'development' or 'production'
+ * @returns {Object}
+ */
 const extend = (env, argv) => ({
   devServer: {
     clientLogLevel: 'warning',
@@ -12,6 +18,7 @@ const extend = (env, argv) => ({
     port: 3002,
     open: true,
     inline: true,
+    hot: true,
     // quiet: true,
   },
   plugins: [
@@ -19,6 +26,7 @@ const extend = (env, argv) => ({
       MODE: JSON.stringify(argv.mode),
       // 'SOME_API_MOCK_DATA': JSON.stringify(require('./mock/sampleApi.json')),
       HOST_PREFIX: JSON.stringify(pathConf.api.local),
+      STATIC_PATH: JSON.stringify(pathConf.staticFiles.local),
     }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({

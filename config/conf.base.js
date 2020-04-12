@@ -3,7 +3,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const AutoPreFixer = require('autoprefixer')
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const util = require('./util')
 const pathConf = require('./conf.path')
 
 const getAssetPath = mode => {
@@ -23,35 +22,30 @@ module.exports = (env, argv) => ({
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      // '@common': path.resolve(__dirname,'../src/common'),
-      // '@pages': path.resolve(__dirname,'../src/pages'),
       '@components': path.resolve(__dirname, '../src/components'),
     },
   },
   module: {
     rules: [
-      // {
-      //   test: /\.css?$/,
-      //   exclude: /node_modules/,
-      //   use: getCssLoader(argv.mode)
-      // },
-      // {
-      //   test: /\.(jpg|png|gif|svg)$/,
-      //   use: [
-      //     {
-      //       loader: 'file-loader',
-      //       options: {
-      //           regExp: /\/([a-zA-Z0-9_-]+)\/[a-zA-Z0-9_-]+\.(jpg|png|gif|svg)$/,
-      //           name: '[1]/[name].[ext]',
-      //           outputPath: `./${pathConf.assetsDir}img/`,
-      //           publicPath: (path)=>{
-      //             const excludeCommonImgPath = path.replace('img/','')
-      //             return (argv.deploy) ? `${getAssetPath(argv.deploy)}${pathConf.assetsDir}img/${excludeCommonImgPath}`: `${getAssetPath('local')}${pathConf.assetsDir}img/${excludeCommonImgPath}`
-      //           }
-      //       }
-      //     },
-      //   ]
-      // },
+      {
+        test: /\.(jpg|png|gif|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              regExp: /\/([a-zA-Z0-9_-]+)\/[a-zA-Z0-9_-]+\.(jpg|png|gif|svg)$/,
+              name: '[1]/[name].[ext]',
+              outputPath: `./${pathConf.assetsDir}img/`,
+              publicPath: path => {
+                const excludeCommonImgPath = path.replace('img/', '')
+                return argv.deploy
+                  ? `${getAssetPath(argv.deploy)}${pathConf.assetsDir}img/${excludeCommonImgPath}`
+                  : `${getAssetPath('local')}${pathConf.assetsDir}img/${excludeCommonImgPath}`
+              },
+            },
+          },
+        ],
+      },
       {
         test: /index\.(sa|sc|c)ss$/,
         use: [
@@ -65,7 +59,7 @@ module.exports = (env, argv) => ({
             loader: 'css-loader',
             options: {
               importLoaders: 2,
-              // url: false,
+              url: true, // css内で相対パス指定したい場合はfalseにする
             },
           },
           {
@@ -96,35 +90,6 @@ module.exports = (env, argv) => ({
           },
         ],
       },
-      // {
-      //   test : /\.ejs$/,
-      //   use  : [
-      //     'html-loader',
-      //     {
-      //       loader:'ejs-html-loader',
-      //       options:{
-      //         isDev: argv.mode === 'development',
-      //         hostPrefix: pathConf.api[String(argv.deploy || 'local')],
-      //         componentData: util.getDirName('/src/components').reduce(
-      //           (a,b) => {
-      //             return Object.assign(a, {
-      //                [b]:{
-      //                  p: `${b}__`,
-      //                  data: (()=>{
-      //                    try{
-      //                     return require(path.resolve(__dirname, `../src/components/${b}/data.json`))
-      //                    }
-      //                    catch(e){
-      //                     return {}
-      //                    }
-      //                  })()
-      //                 }
-      //               })
-      //           },{}),
-      //       }
-      //     }
-      //   ]
-      // },
     ],
   },
   plugins: [
@@ -133,6 +98,7 @@ module.exports = (env, argv) => ({
     //     template: path.resolve(__dirname, '../src/index.html'),
     //     filename: 'index.html',
     //   }),
+    // TODO: devに移動かも
     new MiniCssExtractPlugin({
       filename: '[name].css',
       path: path.resolve(__dirname, `./../${pathConf.buildDir}`),
