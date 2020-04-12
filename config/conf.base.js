@@ -20,7 +20,7 @@ module.exports = (env, argv) => ({
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      '@components': path.resolve(__dirname, '../src/components'),
+      '@img': path.resolve(__dirname, '../src/img'),
     },
   },
   module: {

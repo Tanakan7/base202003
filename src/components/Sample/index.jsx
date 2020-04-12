@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 // import { NewsList } from './NewsList'
-import { MapSample } from './MapSample'
 import forkPng from '../../img/fork.png'
 import forkSvg from '../../img/fork.svg'
 import forkSubDirSvg from '../../img/subDirSample/subsub/images.png'
+import { MapSample } from './MapSample'
 
 const Header = styled('div')`
   background-color: darkseagreen;
@@ -25,9 +25,7 @@ const HeaderText = styled('p')`
 `
 
 export const Sample = () => {
-  // eslint-disable-next-line no-undef
   console.log(HOST_PREFIX)
-  // eslint-enable-next-line no-undef
   return (
     <>
       <Header>
